@@ -44,14 +44,16 @@ import com.example.questapi.viewmodel.provider.PenyediaViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    //edit 1.1 : tambahkan parameter navigateToItemEntry
+    //edit 1.1: tambahkan parameter navigateToItemEntry
     navigateToItemEntry: () -> Unit,
     //edit 2.4 : tambahkan parameter navigateToItemUpdate
-    navigateToItemUpdate:(Int) -> Unit,
+    navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
+
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -88,11 +90,12 @@ fun HomeScreen(
 @Composable
 fun HomeBody(
     statusUiSiswa: StatusUiSiswa,
-    //edit 2.3 tambahkan parameter onSiswaClick
+    //edit 2.3: tambahkan parameter onSiswaClick
     onSiswaClick: (Int) -> Unit,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
-){
+) {
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -109,6 +112,7 @@ fun HomeBody(
         }
     }
 }
+
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Image(
@@ -134,7 +138,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 @Composable
 fun DaftarSiswa(
     itemSiswa : List<DataSiswa>,
-    //edit 2.1 : tambahkab parameter onSiswaClick
+    //edit 2.1 : tambahkan parameter onSiswaClick
     onSiswaClick: (DataSiswa) -> Unit,
     modifier: Modifier=Modifier
 ){
@@ -157,32 +161,40 @@ fun ItemSiswa(
     siswa: DataSiswa,
     modifier: Modifier = Modifier
 ) {
+
     Card(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
+
         Column(
             modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large)),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(
                 id = R.dimen.padding_small))
         ) {
+
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
+
                 Text(
                     text = siswa.nama,
                     style = MaterialTheme.typography.titleLarge,
                 )
+
                 Spacer(Modifier.weight(1f))
+
                 Icon(
                     imageVector = Icons.Default.Phone,
                     contentDescription = null,
                 )
+
                 Text(
                     text = siswa.telpon,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
+
             Text(
                 text = siswa.alamat,
                 style = MaterialTheme.typography.titleMedium
